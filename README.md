@@ -17,47 +17,47 @@ The goal here is not to build a complex production app. The goal is to learn str
 ## What this project demonstrates
 
 1. **TypeScript setup basics**
-- `tsconfig.json` is configured with:
-  - `rootDir: ./src` (all TS source code)
-  - `outDir: ./dist` (compiled JavaScript output)
-- We write code in `src` and run compiled JS from `dist`.
+   - `tsconfig.json` is configured with:
+     - `rootDir: ./src` (all TS source code)
+     - `outDir: ./dist` (compiled JavaScript output)
+   - We write code in `src` and run compiled JS from `dist`.
 
 2. **Compilation workflow**
-- `tsc -p .` compiles project based on `tsconfig.json`.
-- `tsc --watch` keeps recompiling when files change.
-- This project uses `tsc-watch` to automatically run Node after successful compile.
+  - `tsc -p .` compiles project based on `tsconfig.json`.
+  - `tsc --watch` keeps recompiling when files change.
+  - This project uses `tsc-watch` to automatically run Node after successful compile.
 
 3. **Why `.gitignore` matters**
-- I should not push generated/build/dependency folders to GitHub:
-  - `node_modules/`
-  - `dist/`
-  - logs/cache/env temp files
-- Quick way to generate a Node template:
-  - `npx gitignore node`
+   - I should not push generated/build/dependency folders to GitHub:
+     - `node_modules/`
+     - `dist/`
+     - logs/cache/env temp files
+   - Quick way to generate a Node template:
+     - `npx gitignore node`
 
 4. **Dependency understanding**
-- Runtime deps:
-  - `express`
-  - `zod`
-- Type/dev deps:
-  - `@types/express`
-  - build/watch tools
-- Important learning point: tools and type packages are generally dev dependencies.
+   - Runtime deps:
+     - `express`
+     - `zod`
+   - Type/dev deps:
+     - `@types/express`
+     - build/watch tools
+   - Important learning point: tools and type packages are generally dev dependencies.
 
 5. **Express + TypeScript architecture**
-- Entry point creates HTTP server and attaches Express app.
-- Express app wiring stays separate from server boot logic.
-- Todo module uses route/controller split.
+  - Entry point creates HTTP server and attaches Express app.
+  - Express app wiring stays separate from server boot logic.
+  - Todo module uses route/controller split.
 
 6. **Zod runtime validation**
-- TypeScript checks types at compile time only.
-- Zod validates incoming runtime data (like request body).
-- This project validates todo creation payload with schema.
+  - TypeScript checks types at compile time only.
+  - Zod validates incoming runtime data (like request body).
+  - This project validates todo creation payload with schema.
 
 7. **Why `.bind(this)` is used**
-- Class methods lose context when passed directly as callbacks.
-- In Express routes, `controller.handleInsertTodo` without bind may lose `this`.
-- `controller.handleInsertTodo.bind(controller)` ensures `this._db` works correctly.
+  - Class methods lose context when passed directly as callbacks.
+  - In Express routes, `controller.handleInsertTodo` without bind may lose `this`.
+  - `controller.handleInsertTodo.bind(controller)` ensures `this._db` works correctly.
 
 ---
 
